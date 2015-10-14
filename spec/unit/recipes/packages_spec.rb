@@ -26,17 +26,6 @@ RSpec.describe 'jml-defaults::packages' do
       it 'installs vim from source' do
         expect(chef_run).to include_recipe 'vim::source'
       end
-
-      context 'as an ovirt guest' do
-        let(:runner) do
-          ChefSpec::ServerRunner.new(platform: 'centos', version: '7.0') do |n|
-            n.set['ovirt_guest'] = true
-          end.converge(described_recipe)
-        end
-        it 'includes open-vm-tools' do
-          expect(runner).to install_yum_package('ovirt-guest-agent-common')
-        end
-      end
     end
   end
 end
