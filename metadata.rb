@@ -1,0 +1,13 @@
+name 'jml-defaults'
+maintainer 'J. Morgan Lieberthal'
+maintainer_email 'j.morgan.lieberthal@gmail.com'
+license 'mit'
+description 'Installs/Configures jml-defaults'
+long_description 'Installs/Configures jml-defaults'
+version '0.5.6'
+
+depends 'apt', '~> 2.8.2'
+depends 'chef-vault', '~> 1.3'
+depends 'vim', '~> 2.0'
+depends 'yum-epel', '~> 0.6.3'
+depends 'ssh_authorized_keys', '~> 0.3'

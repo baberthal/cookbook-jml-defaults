@@ -1,0 +1,26 @@
+{
+  "name": "demo",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[jml-ubuntu-defaults]"
+  ],
+  "default_attributes": {
+    "chef_client": {
+      "load_gems": {
+        "chef_handler_foreman": {
+          "require_name": "chef_handler_foreman",
+          "version": "0.1"
+        }
+      },
+      "config": {
+        "foreman_server_options": {
+          "url": "https://foreman.jmorgan.org:8443"
+        },
+        "foreman_facts_upload": true,
+        "foreman_reports_upload": true,
+        "reports_log_level": "notice"
+      }
+    }
+  }
+}
