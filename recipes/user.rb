@@ -3,6 +3,13 @@
 # Recipe:: user
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
+chef_gem 'unix-crypt' do
+  compile_time true if respond_to?(:compile_time)
+end
+gem_package 'unix-crypt'
+require 'unix_crypt'
+extend JMLDefaultsCookbook::Helpers
+# ::Chef::Recipe.send(:include, JMLDefaultsCookbook::Helpers)
 
 default_attrs = {
   group: node['jml-defaults']['admin_user']['group'],
@@ -13,6 +20,8 @@ default_attrs = {
   sudo_group: node['jml-defaults']['admin_user']['sudo_group']
 }
 
+pwcrypt = encrypt_password(default_attrs[:password]['password'])
+
 group default_attrs[:group]
 
 user default_attrs[:user] do
@@ -21,7 +30,7 @@ user default_attrs[:user] do
   action :create
   manage_home true
   home "/home/#{default_attrs[:user]}"
-  password default_attrs[:password]['password']
+  password pwcrypt
 end
 
 group default_attrs[:sudo_group] do

@@ -1,12 +1,16 @@
-default['jml-defaults'] = {
-  'shell' => '/bin/zsh',
-  'zsh' => {
-    'plugins' => value_for_platform_family(
-      'rhel' => %w(git yum systemd),
-      'debian' => %w(git apt)
-    )
-  }
-}
+default['jml-defaults']['shell'] = '/bin/zsh'
+
+plugins = %w(git)
+
+if platform_family? 'rhel'
+  plugins << 'yum'
+elsif platform_family? 'debian'
+  plugins << 'apt'
+end
+
+plugins << 'systemd' if node['init_package'] == 'systemd'
+
+default['jml-defaults']['zsh']['plugins'] = plugins
 
 default['jml-defaults']['admin_user'] = {
   'user' => node['platform'],
