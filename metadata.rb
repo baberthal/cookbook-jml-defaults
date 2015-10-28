@@ -4,7 +4,7 @@ maintainer_email 'j.morgan.lieberthal@gmail.com'
 license 'mit'
 description 'Installs/Configures jml-defaults'
 long_description 'Installs/Configures jml-defaults'
-version '0.6.0'
+version '0.6.1'
 
 depends 'apt', '~> 2.8.2'
 depends 'chef-vault', '~> 1.3'

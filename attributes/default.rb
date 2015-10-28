@@ -20,4 +20,8 @@ default['jml-defaults']['admin_user'] = {
 }
 
 default['vim']['install_method'] = 'source'
-default['admin_user'] = node['jml-defaults']['admin_user']['user'] || 'root'
+default['admin_user'] = if node['jml-defaults']['admin_user']
+                          node['jml-defaults']['admin_user']['user']
+                        else
+                          'root'
+                        end
